@@ -7,9 +7,9 @@
 //
 
 @import XCTest;
-
+#import "LRQWebImageDownloader.h"
 @interface Tests : XCTestCase
-
+@property (strong, nonatomic) LRQWebImageDownloader *downloader;
 @end
 
 @implementation Tests
@@ -28,7 +28,15 @@
 
 - (void)testExample
 {
-    XCTFail(@"No implementation for \"%s\"", __PRETTY_FUNCTION__);
+    
+    NSString *pic = @"https://img4.duitang.com/uploads/item/201506/20/20150620000045_neawY.jpeg";
+
+    [self.downloader downloadImageWithURL:[NSURL URLWithString:pic] options:LRQWebImageDownloaderProgressiveDownload progress:^(NSInteger receviedSize, NSInteger expectedSize) {
+        NSLog(@"receviedSize: %zd, expectedSize = %zd", receviedSize, expectedSize);
+    } completed:^(UIImage *image, NSData *data, NSError *error, BOOL finished) {
+//        self.imgView.image = image;
+        NSLog(@"image = %@", image);
+    }];
 }
 
 @end
