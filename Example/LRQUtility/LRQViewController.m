@@ -9,15 +9,26 @@
 #import "LRQViewController.h"
 
 @interface LRQViewController ()
-
+@property (strong, nonatomic) UILabel *label;
 @end
 
 @implementation LRQViewController
+@synthesize label = label;
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
+
+    label = [UILabel new];
+    label.frame = CGRectMake(100, 100, 200, 80);
+    label.font = [UIFont fontWithName:@"PingFangSC-Semibold" size:14.0];
+    label.text = @"HelloWorld";
+    NSLog(@"point size = %f", label.font.pointSize);
+    
+}
+
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    
 }
 
 - (void)didReceiveMemoryWarning
